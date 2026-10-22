@@ -1,0 +1,23 @@
+{
+  "lint": {
+    "runtimeRoots": ["Assets/Scripts/"],
+    "ignoreDirs": ["/Editor/", "/Tests/", "/Plugins/", "/ThirdParty/", "/Samples/"],
+    "devDirs": ["/Dev/", "/Debug/", "/Cheats/"],
+    "requireNamespace": true,
+    "logHelper": null,
+    "poolHelper": null,
+    "physicsHelper": null,
+    "generatedPaths": [],
+    "generatedHint": "Edit the source it is generated from instead.",
+    "textCheckGlobs": [],
+    "bannedText": [
+      { "pattern": "\\bperfect\\b", "in": "string", "message": "player-facing 'Perfect' text: the team shows timing through feel, not labels" }
+    ]
+  },
+  "commitNoise": [
+    { "path": "ThirdPartyTool/Cache/", "reason": "tool cache rewritten on open" }
+  ],
+  "verify": {
+    "botRun": null
+  }
+}

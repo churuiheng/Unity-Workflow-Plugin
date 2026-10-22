@@ -1,0 +1,18 @@
+{
+  "name": "unity-workflow",
+  "version": "0.1.0",
+  "displayName": "Unity Workflow",
+  "description": "Faster Unity work without losing quality: guard-rail hooks on every C# edit, a Unity code reviewer agent, verify (compile, tests, release + development player compiles), a measured perf check against a baseline, and commits sorted from Unity's re-serialisation noise.",
+  "author": {
+    "name": "Rui Heng"
+  },
+  "keywords": [
+    "unity",
+    "gamedev",
+    "performance",
+    "code review",
+    "hooks",
+    "git"
+  ],
+  "license": "MIT"
+}

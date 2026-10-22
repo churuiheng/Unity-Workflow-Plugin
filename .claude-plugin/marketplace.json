@@ -1,0 +1,12 @@
+{
+  "name": "unity-workflow",
+  "owner": { "name": "Rui Heng" },
+  "metadata": { "description": "Unity Workflow: guard rails, review, verify and perf checks for Unity projects with Claude Code" },
+  "plugins": [
+    {
+      "name": "unity-workflow",
+      "source": "./plugin",
+      "description": "Guard-rail hooks on every C# edit, a Unity reviewer agent, verify, a measured perf check against a baseline, and noise-free Unity commits."
+    }
+  ]
+}

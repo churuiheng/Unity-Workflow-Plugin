@@ -1,0 +1,9 @@
+{
+  "name": "com.ruiheng.unity-workflow",
+  "version": "0.1.0",
+  "displayName": "Unity Workflow (Claude Code)",
+  "description": "Editor and dev-build helpers for the unity-workflow Claude Code plugin: a per-frame perf probe that measures the game without the editor's own cost, a baseline compare, and release/development player script compiles.",
+  "unity": "2022.3",
+  "author": { "name": "Rui Heng" },
+  "license": "MIT"
+}
