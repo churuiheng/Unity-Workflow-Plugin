@@ -1,11 +1,18 @@
 {
-  "description": "unity-workflow guard rails: lint the lines Claude adds to C# against Unity rules, and refuse hand edits to generated folders",
+  "description": "unity-workflow: lint the lines Claude adds to C#, refuse hand edits to generated folders, and keep sessions from compiling or entering/stopping play under someone else's session in a shared Unity editor",
   "hooks": {
     "PreToolUse": [
       {
         "matcher": "Edit|Write|MultiEdit",
         "hooks": [
-          { "type": "command", "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/run_python.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/unity_lint.py\" --pre", "timeout": 10 }
+          { "type": "command", "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/run_python.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/unity_lint.py\" --pre", "timeout": 10 },
+          { "type": "command", "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/run_python.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/editor_guard.py\"", "timeout": 10 }
+        ]
+      },
+      {
+        "matcher": "mcp__.*[Uu]nity.*__",
+        "hooks": [
+          { "type": "command", "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/run_python.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/editor_guard.py\"", "timeout": 10 }
         ]
       }
     ],

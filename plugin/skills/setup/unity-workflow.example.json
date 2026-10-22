@@ -1,8 +1,20 @@
 {
   "lint": {
-    "runtimeRoots": ["Assets/Scripts/"],
-    "ignoreDirs": ["/Editor/", "/Tests/", "/Plugins/", "/ThirdParty/", "/Samples/"],
-    "devDirs": ["/Dev/", "/Debug/", "/Cheats/"],
+    "runtimeRoots": [
+      "Assets/Scripts/"
+    ],
+    "ignoreDirs": [
+      "/Editor/",
+      "/Tests/",
+      "/Plugins/",
+      "/ThirdParty/",
+      "/Samples/"
+    ],
+    "devDirs": [
+      "/Dev/",
+      "/Debug/",
+      "/Cheats/"
+    ],
     "requireNamespace": true,
     "logHelper": null,
     "poolHelper": null,
@@ -11,11 +23,30 @@
     "generatedHint": "Edit the source it is generated from instead.",
     "textCheckGlobs": [],
     "bannedText": [
-      { "pattern": "\\bperfect\\b", "in": "string", "message": "player-facing 'Perfect' text: the team shows timing through feel, not labels" }
+      {
+        "pattern": "\\bperfect\\b",
+        "in": "string",
+        "message": "player-facing 'Perfect' text: the team shows timing through feel, not labels"
+      }
     ]
   },
+  "playtest": {
+    "startScene": "Assets/Scenes/Boot.unity",
+    "saveFiles": [
+      "{persistentDataPath}/save.json"
+    ]
+  },
+  "editorLock": {
+    "playLockMinutes": 45,
+    "playStartPatterns": [],
+    "playStopPatterns": [],
+    "reloadPatterns": []
+  },
   "commitNoise": [
-    { "path": "ThirdPartyTool/Cache/", "reason": "tool cache rewritten on open" }
+    {
+      "path": "ThirdPartyTool/Cache/",
+      "reason": "tool cache rewritten on open"
+    }
   ],
   "verify": {
     "botRun": null

@@ -1,3 +1,5 @@
+// Release builds compile out the code that uses some fields (recording is editor/development only).
+#pragma warning disable 0649
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

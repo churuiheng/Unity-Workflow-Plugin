@@ -31,7 +31,7 @@ namespace UnityWorkflow.Editor
         /// </summary>
         public static string StartRun(float seconds = 120f, string startScene = null, string label = "editor run")
         {
-            if (EditorApplication.isPlaying) return "stop play mode first";
+            if (EditorApplication.isPlayingOrWillChangePlaymode) return "the editor is already in play mode: stop it first (or ask whoever is playing)";
             SessionState.SetString(StartedKey, System.DateTime.Now.ToString("o"));
             SessionState.SetBool(PerfProbe.PendingKey, true);
             SessionState.SetString(PerfProbe.PendingKey + ".label", label);
@@ -44,6 +44,7 @@ namespace UnityWorkflow.Editor
                     ? AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) : "");
                 EditorSceneManager.playModeStartScene = scene;
             }
+            EditorStateBeacon.SetPlayOwner("perf-check: " + label);
             // Directly, not via delayCall: a delayCall queued right after a domain reload can fail to fire.
             EditorApplication.EnterPlaymode();
             return "starting";

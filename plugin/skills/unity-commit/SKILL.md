@@ -10,8 +10,7 @@ and can put a broken value into the repo. Keep commits to what the task changed.
 
 ## 1. Look
 
-`python "${CLAUDE_PLUGIN_ROOT}/skills/unity-commit/scripts/review_changes.py" [path filters]` (use `python3` on
-macOS/Linux). Read-only. Lists each changed file with status, real size of change (line endings ignored), kind, and
+`python "<this skill's base directory>/scripts/review_changes.py" [path filters]` (use `python3` on macOS/Linux). Read-only. Lists each changed file with status, real size of change (line endings ignored), kind, and
 either the YAML fields that changed (`m_LocalPosition x3, enabled x1`) or a noise flag with the reason; warns about
 files over 50 MB and new assets missing a `.meta`. Project noise rules: `commitNoise` in `.claude/unity-workflow.json`.
 

@@ -7,8 +7,9 @@ description: Check a code or content change to a Unity project is safe before it
 
 Cheapest check first; stop at the first hard failure, fix it, start again from the top. Uses Unity MCP
 (`mcp__UnityMCP__*`). Unity must be **focused** for compiles, tests and play to progress (an unfocused editor barely
-ticks): bring it to the front when calls time out. **Never compile or enter play while the editor is already playing
-someone else's session** (check `EditorApplication.isPlaying` first): a reload mid-play breaks the running game.
+ticks): `sh <plugin>/skills/playtest/scripts/unity_window.sh focus` when calls time out (`<plugin>` = two folders up
+from this skill's base directory). **Never compile or enter play while the editor is playing someone else's
+session**: the editor-lock hook refuses it; wait or ask the user (`/unity-workflow:editor-lock`).
 
 ## 1. Compile and console
 
@@ -35,7 +36,8 @@ Both must say `ok`. (Needs the unity-workflow package: `/unity-workflow:setup`.)
 If `.claude/unity-workflow.json` has `verify.botRun` (or CLAUDE.md names a bot/autopilot), run it, wait for its
 report — poll its own "finished" state, not just a report file's timestamp (many recorders rewrite their report
 during the run) — then stop play and read the report: deaths, soft locks, errors. Errors in the console during the
-run count as a failure. No bot: say so, and for gameplay changes enter play and look (screenshot) instead.
+run count as a failure. No bot: say so, and for gameplay changes use `/unity-workflow:playtest` to play and look
+instead. Keep Unity in front during long runs (`unity_window.sh keep <minutes>`, in the background).
 
 ## Report
 

@@ -6,8 +6,10 @@ description: Measure whether a change made a Unity game slower or more garbage-h
 # Perf check
 
 The lint hook catches bad patterns; this measures real cost. Needs the unity-workflow package (`/unity-workflow:setup`)
-and Unity MCP. Unity must stay **focused** during the run. Don't start while the editor is playing someone else's
-session.
+and Unity MCP. Unity must stay **focused** during the run: start
+`sh <plugin>/skills/playtest/scripts/unity_window.sh keep <minutes>` in the background (`<plugin>` = two folders up
+from this skill's base directory). `StartRun` takes the editor lock like any play session; if another session or the
+user is playing, the hook refuses it: wait or ask.
 
 ## Make the numbers mean something (once per project)
 
