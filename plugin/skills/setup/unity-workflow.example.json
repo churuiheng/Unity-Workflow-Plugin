@@ -50,5 +50,9 @@
   ],
   "verify": {
     "botRun": null
+  },
+  "uiReview": {
+    "rulesFile": ".claude/ui-rules.md",
+    "capturesDir": "Captures"
   }
 }

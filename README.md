@@ -12,6 +12,7 @@ co-op action game, then made generic.
 | `/unity-workflow:editor-lock` | See who holds the editor, claim it for long work, free a stale lock with the user's OK, and make script saves safe during play. |
 | `/unity-workflow:setup` | Installs the small Unity package, writes `.claude/unity-workflow.json` from what your project already uses, offers a starter `CLAUDE.md`, checks the hooks. |
 | `/unity-workflow:verify` | Compile + console, EditMode/PlayMode tests, **release and development player script compiles**, and your bot run if you have one. |
+| `/unity-workflow:ui-review` | Reviews UI by looking at it: captures the HUD, menus and in-world indicators in the states players see, crops/zooms and lines them up (`ui_shots.py`), checks them against a clarity/consistency/navigation checklist and **your recorded UI rules** (`.claude/ui-rules.md`), fixes, and proves each fix with a before/after strip. Includes a table of Unity UI traps (sliced-corner multiplier math, oval pills, Filled images, world-space units, fallback fonts, letterboxed masks). |
 | `/unity-workflow:perf-check` | Records real frames in play: frame time, the **game's own** CPU time and GC (editor overhead excluded), hitches, batches, scripts, physics, per phase and area, plus area-load spikes. Compares with a committed baseline and reports PASS / WARN / FAIL. |
 | `/unity-workflow:unity-commit` | Sorts changes into real work and Unity noise (re-serialisation, font atlases, rebakes), summarises prefab/scene diffs by field, stages only your hunks when another session touched the same file, runs the reviewer, writes the message. |
 
@@ -23,7 +24,7 @@ co-op action game, then made generic.
 ```
 Then, in your Unity project: `/unity-workflow:setup`.
 
-**Needs:** Python 3 on the PATH (`python3`, `python` or `py`) for the hooks and the commit script; a POSIX shell for
+**Needs:** Python 3 on the PATH (`python3`, `python` or `py`) for the hooks and the commit script (plus Pillow for `ui-review`'s image script); a POSIX shell for
 hooks (Git Bash on Windows, which Claude Code uses); [MCP for Unity](https://github.com/CoplayDev/unity-mcp) connected
 for verify and perf-check; Unity 2022.3 or newer (tested on Unity 6.3).
 
@@ -47,6 +48,8 @@ Optional; without it the generic rules apply. `setup` writes it from evidence in
 | `verify.botRun` | `null` | how to start your automated play-through, if you have one |
 | `playtest.startScene` | `""` | scene play starts from (a bootstrap scene); empty = the open scene |
 | `playtest.saveFiles` | `[]` | files backed up before play and restored after; tokens `{persistentDataPath}`, `{dataPath}`, `{projectPath}` |
+| `uiReview.rulesFile` | `.claude/ui-rules.md` | the project's UI decisions, read before every review and updated after |
+| `uiReview.capturesDir` | `Captures` | where review screenshots go |
 | `editorLock.playLockMinutes` | `45` | how long a play lock lasts without activity |
 | `editorLock.playStartPatterns` / `playStopPatterns` / `reloadPatterns` | `[]` | regexes for project helpers that `execute_code` uses to enter/stop play or recompile (bot launchers) |
 
