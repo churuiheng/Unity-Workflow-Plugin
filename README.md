@@ -13,6 +13,7 @@ co-op action game, then made generic.
 | `/unity-workflow:setup` | Installs the small Unity package, writes `.claude/unity-workflow.json` from what your project already uses, offers a starter `CLAUDE.md`, checks the hooks. |
 | `/unity-workflow:verify` | Compile + console, EditMode/PlayMode tests, **release and development player script compiles**, and your bot run if you have one. |
 | `/unity-workflow:ui-review` | Reviews UI by looking at it: captures the HUD, menus and in-world indicators in the states players see, crops/zooms and lines them up (`ui_shots.py`), checks them against a clarity/consistency/navigation checklist and **your recorded UI rules** (`.claude/ui-rules.md`), fixes, and proves each fix with a before/after strip. Includes a table of Unity UI traps (sliced-corner multiplier math, oval pills, Filled images, world-space units, fallback fonts, letterboxed masks). |
+| `/unity-workflow:clean-captures` | Prunes old screenshots/clips from your captures folders (default `Captures/`, older than 30 days): dry run first with count and space freed, `.keep` globs to pin evidence, deletes only on `--apply`; never touches git-tracked files, `Assets/` or anything outside the project. |
 | `/unity-workflow:perf-check` | Records real frames in play: frame time, the **game's own** CPU time and GC (editor overhead excluded), hitches, batches, scripts, physics, per phase and area, plus area-load spikes. Compares with a committed baseline and reports PASS / WARN / FAIL. |
 | `/unity-workflow:unity-commit` | Sorts changes into real work and Unity noise (re-serialisation, font atlases, rebakes), summarises prefab/scene diffs by field, stages only your hunks when another session touched the same file, runs the reviewer, writes the message. |
 
@@ -50,6 +51,7 @@ Optional; without it the generic rules apply. `setup` writes it from evidence in
 | `playtest.saveFiles` | `[]` | files backed up before play and restored after; tokens `{persistentDataPath}`, `{dataPath}`, `{projectPath}` |
 | `uiReview.rulesFile` | `.claude/ui-rules.md` | the project's UI decisions, read before every review and updated after |
 | `uiReview.capturesDir` | `Captures` | where review screenshots go |
+| `captures.dirs` / `captures.maxAgeDays` / `captures.keep` | `["Captures"]` / `30` / `[]` | what `clean-captures` prunes, how old, and globs it never deletes |
 | `editorLock.playLockMinutes` | `45` | how long a play lock lasts without activity |
 | `editorLock.playStartPatterns` / `playStopPatterns` / `reloadPatterns` | `[]` | regexes for project helpers that `execute_code` uses to enter/stop play or recompile (bot launchers) |
 

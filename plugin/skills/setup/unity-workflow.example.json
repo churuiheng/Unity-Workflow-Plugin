@@ -54,5 +54,12 @@
   "uiReview": {
     "rulesFile": ".claude/ui-rules.md",
     "capturesDir": "Captures"
+  },
+  "captures": {
+    "dirs": [
+      "Captures"
+    ],
+    "maxAgeDays": 30,
+    "keep": []
   }
 }
